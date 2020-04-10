@@ -1,4 +1,4 @@
-package com.ntapia.poker.domain;
+package com.ntapia.poker;
 
 import com.ntapia.poker.application.ChipManager;
 import com.ntapia.poker.application.GameManager;
