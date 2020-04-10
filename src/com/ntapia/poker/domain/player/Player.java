@@ -37,6 +37,10 @@ public class Player {
     return nextChip;
   }
 
+  public void addChips(List<Chip> chips){
+    this.chips.addAll(chips);
+  }
+
   public Chip bet(int value) {
     return requestChip(value);
   }

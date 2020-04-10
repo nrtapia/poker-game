@@ -1,5 +1,6 @@
-package com.ntapia.poker.application;
+package com.ntapia.poker.application.impl;
 
+import com.ntapia.poker.application.CardManager;
 import com.ntapia.poker.domain.card.Card;
 import com.ntapia.poker.domain.card.Suit;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class CardManager {
+public class CardManagerImpl implements CardManager {
 
   private static final String JACK = "J";
   private static final String QUEEN = "Q";
@@ -17,7 +18,7 @@ public class CardManager {
   private ArrayList<Card> cards;
   private int index;
 
-  public CardManager() {
+  public CardManagerImpl() {
     create();
   }
 
@@ -40,11 +41,13 @@ public class CardManager {
     index = 0;
   }
 
+  @Override
   public void shuffle() {
     Collections.shuffle(this.cards);
     index = 0;
   }
 
+  @Override
   public Card getCard() {
     if (index < cards.size()) {
       final Card card = cards.get(index);

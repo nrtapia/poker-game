@@ -4,21 +4,25 @@ import com.ntapia.poker.application.ChipManager;
 import com.ntapia.poker.application.GameManager;
 import com.ntapia.poker.application.PlayerManager;
 import com.ntapia.poker.application.ScoreManager;
+import com.ntapia.poker.application.impl.ChipManagerImpl;
+import com.ntapia.poker.application.impl.GameManagerImpl;
+import com.ntapia.poker.application.impl.PlayerManagerImpl;
+import com.ntapia.poker.application.impl.ScoreManagerImpl;
 import com.ntapia.poker.domain.score.Score;
 
 public class GamePlayer {
 
   public static void main(String[] args) {
 
-    ScoreManager scoreManager = new ScoreManager();
-    ChipManager chipManager = new ChipManager();
-    PlayerManager playerManager = new PlayerManager();
+    ScoreManager scoreManager = new ScoreManagerImpl();
+    ChipManager chipManager = new ChipManagerImpl();
+    PlayerManager playerManager = new PlayerManagerImpl();
 
     playerManager.register("AlPHA", chipManager.buildBaseChipsForPlayer());
     playerManager.register("BRAVO", chipManager.buildBaseChipsForPlayer());
     playerManager.register("CHARLIE", chipManager.buildBaseChipsForPlayer());
 
-    GameManager gameManager = new GameManager(playerManager, scoreManager);
+    GameManager gameManager = new GameManagerImpl(playerManager, scoreManager);
     gameManager.start();
     gameManager.display();
 

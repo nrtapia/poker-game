@@ -1,14 +1,15 @@
-package com.ntapia.poker.application;
+package com.ntapia.poker.application.impl;
 
+import com.ntapia.poker.application.ScoreManager;
 import com.ntapia.poker.domain.score.Score;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScoreManager {
+public class ScoreManagerImpl implements ScoreManager {
 
   private List<Score> scores;
 
-  public ScoreManager() {
+  public ScoreManagerImpl() {
     scores = new ArrayList<>();
   }
 
@@ -18,9 +19,5 @@ public class ScoreManager {
 
   public List<Score> getScores() {
     return scores;
-  }
-
-  public void setScores(List<Score> scores) {
-    this.scores = scores;
   }
 }
