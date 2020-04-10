@@ -6,6 +6,8 @@ import com.ntapia.poker.application.PlayerManager;
 import com.ntapia.poker.application.ScoreManager;
 import com.ntapia.poker.domain.chip.Chip;
 import com.ntapia.poker.domain.game.Game;
+import com.ntapia.poker.domain.game.GameCommand;
+import com.ntapia.poker.domain.player.Player;
 import com.ntapia.poker.domain.player.PlayerWithoutFoundsException;
 import com.ntapia.poker.domain.score.Score;
 import java.util.List;
@@ -87,5 +89,11 @@ public class GameManagerImpl implements GameManager {
   public void display() {
     game.show();
     System.out.printf("Pot: %d%n", this.chipManager.getPotTotal());
+  }
+
+  @Override
+  public void nextPlay() {
+    Player player = this.playerManager.getPlayer(getRandomPlayerName());
+    GameCommand command = player.play();
   }
 }

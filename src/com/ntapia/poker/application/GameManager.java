@@ -16,4 +16,6 @@ public interface GameManager {
 
   void display();
 
+  void nextPlay();
+
 }

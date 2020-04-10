@@ -1,6 +1,8 @@
 package com.ntapia.poker.domain.player;
 
 import com.ntapia.poker.domain.chip.Chip;
+import com.ntapia.poker.domain.game.GameCommand;
+import com.ntapia.poker.domain.game.GameCommand.Action;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -37,7 +39,7 @@ public class Player {
     return nextChip;
   }
 
-  public void addChips(List<Chip> chips){
+  public void addChips(List<Chip> chips) {
     this.chips.addAll(chips);
   }
 
@@ -50,6 +52,11 @@ public class Player {
   }
 
   public void fold() {
+  }
+
+  public GameCommand play() {
+    Chip chip = bet(1);
+    return new GameCommand(Action.BET, chip);
   }
 
   public String getName() {

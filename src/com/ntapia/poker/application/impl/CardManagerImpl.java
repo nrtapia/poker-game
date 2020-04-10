@@ -5,6 +5,7 @@ import com.ntapia.poker.domain.card.Card;
 import com.ntapia.poker.domain.card.Suit;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -15,6 +16,25 @@ public class CardManagerImpl implements CardManager {
   private static final String KING = "K";
   private static final String ACE = "A";
 
+  private static final List<Card> DEFAULT_DECK;
+
+  static {
+    DEFAULT_DECK = new ArrayList<>();
+
+    IntStream.rangeClosed(2, 10).forEach(value -> {
+      for (Suit suit : Suit.values()) {
+        DEFAULT_DECK.add(new Card(value, suit));
+      }
+    });
+
+    for (Suit suit : Suit.values()) {
+      DEFAULT_DECK.add(new Card(JACK, 11, suit));
+      DEFAULT_DECK.add(new Card(QUEEN, 12, suit));
+      DEFAULT_DECK.add(new Card(KING, 13, suit));
+      DEFAULT_DECK.add(new Card(ACE, 1, 14, suit));
+    }
+  }
+
   private ArrayList<Card> cards;
   private int index;
 
@@ -23,21 +43,7 @@ public class CardManagerImpl implements CardManager {
   }
 
   private void create() {
-    this.cards = new ArrayList<>();
-
-    IntStream.rangeClosed(2, 10).forEach(value -> {
-      for (Suit suit : Suit.values()) {
-        this.cards.add(new Card(value, suit));
-      }
-    });
-
-    for (Suit suit : Suit.values()) {
-      this.cards.add(new Card(JACK, 11, suit));
-      this.cards.add(new Card(QUEEN, 12, suit));
-      this.cards.add(new Card(KING, 13, suit));
-      this.cards.add(new Card(ACE, 1, 14, suit));
-    }
-
+    this.cards = new ArrayList<>(DEFAULT_DECK);
     index = 0;
   }
 

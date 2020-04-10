@@ -24,23 +24,24 @@ public class PlayerManagerImpl implements PlayerManager {
 
   @Override
   public Chip requestChip(String playerName, int value) {
-    if (players.containsKey(playerName)) {
-      return players.get(playerName).requestChip(value);
-    }
-    throw new IllegalArgumentException(String.format("Player %s not found", playerName));
+    return getPlayer(playerName).requestChip(value);
   }
 
   @Override
   public void addChips(String playerName, List<Chip> chips) {
-    if (players.containsKey(playerName)) {
-      players.get(playerName).addChips(chips);
-      return;
-    }
-    throw new IllegalArgumentException(String.format("Player %s not found", playerName));
+    getPlayer(playerName).addChips(chips);
   }
 
   @Override
   public List<String> getPlayersNames() {
     return new ArrayList<>(players.keySet());
+  }
+
+  @Override
+  public Player getPlayer(String playerName) {
+    if (players.containsKey(playerName)) {
+      return players.get(playerName);
+    }
+    throw new IllegalArgumentException(String.format("Player %s not found", playerName));
   }
 }
